@@ -1,0 +1,35 @@
+.before{
+    display: none;
+    height: 100%;
+}
+.start{
+    width: 60%;  
+    margin: auto;
+}
+#toolBar{
+    width: 60%;
+    position: fixed;
+}
+#tools{
+    font-size: 14px;
+}
+#label {
+    color:white;
+}
+.md-toolbar-tools  input{
+    color:white;
+    border-color: white;
+}
+
+#container-input{
+    margin-top:5%;
+    color:white;
+}
+#container{
+     margin-top:6%;
+}
+#progressBar{
+    position: fixed;
+    top: 47%;
+    z-index: 100;
+}

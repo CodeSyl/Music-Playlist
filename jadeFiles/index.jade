@@ -1,0 +1,48 @@
+doctype html
+html(lang='en', ng-app="TractrApp")
+  head
+    title Tractr
+  
+  link(rel='stylesheet', href='static/css/style.css')
+  link(rel='stylesheet', href='https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css')
+  
+  script(src='https://use.fontawesome.com/54a8d6f8b6.js')
+  
+  body(ng-controller='videoList')
+    md-progress-linear#progressBar(md-mode='indeterminate')
+    div(ng-view class="view-animate")
+    .before
+      .start(layout="column")
+        md-toolbar#toolBar
+          .md-toolbar-tools#tools
+            md-input-container#container-input
+              label#label Search
+              input.searchInput(ng-model='searchText')
+            span(flex)
+            md-switch(ng-model="rock" aria-label="Rock", ng-click="onToggle(rock, 'Rock')", id="Rock") Rock
+            md-switch(ng-model="hip_hop" aria-label="Hip-Hop", ng-click="onToggle(hip_hop, 'Hip-Hop')") Hip-Hop
+            md-switch(ng-model="classique" aria-label="Classique", ng-click="onToggle(classique, 'Classique')") Classique
+            md-switch(ng-model="francais" aria-label="Français", ng-click="onToggle(francais, 'Français')") Français
+        md-content.md-padding(id="container",layout-xs='column', layout-align='center center',layout='row', ng-repeat='video in videos | filter:searchText | orderBy: videos.genre', ng-if='video.show',flex layout-padding)
+          div(flex-xs='', flex-gt-xs='70', layout='column')
+            md-card
+              div(id="{{video.id}} ")
+              iframe(id="{{video.id}}", ng-src= '{{video.url}}', frameborder='0', allowfullscreen='1', showinfo='0',controls='0', width='100%', height='250px')
+              md-card-title
+                md-card-title-text
+                  span.md-headline {{video.title}}
+              md-card-actions(layout='row', layout-align='end center')
+              .dialog-demo-content(layout='column', layout-align='center center', style='width:100%')
+                md-button.md-icon-button(aria-label='Favorite')
+                  i.fa.fa-info.fa-2x(ng-click='openOffscreen($event)',aria-hidden='true', id="{{video.id}}")
+
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js')
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js')
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js')
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js')
+    // Angular Material Library
+    script(src='https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js')
+    // Api 
+    script(src="static/js/app.js")
+    script(src="static/js/services/video_services.js")
+    script(src="static/js/controllers/video_controller.js")
